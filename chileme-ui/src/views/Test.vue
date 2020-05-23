@@ -13,6 +13,9 @@
        <div>{{ val6[1] }}</div>
        <div>{{ val6[2] }}</div>
        <div v-for="i in val6" :key='i'>{{ i }}</div>
+
+       <div @click="sendGetRequest">GET</div>
+       <div @click="sendPostRequest">POST</div>
     </div> 
 </template>
 <script>
@@ -53,9 +56,37 @@ export default {
         },
         sendRequest(){
             this.Axios({
-                method:'POST',
-                url:'/api/carts/deleGoods',
+                method:'GET',
+                url:'/api/carts/queryCartsData',
                 data:{},
+            }).then(res => {
+                console.log(res)
+            }).catch(err => {
+                console.log(err)
+            })
+        },
+        sendGetRequest(){
+            this.Axios({
+                method:'GET',
+                url:'/api/carts/queryCartsData',
+                params:{
+                    name:'a',
+                    age:10
+                },
+            }).then(res => {
+                console.log(res)
+            }).catch(err => {
+                console.log(err)
+            })
+        },
+        sendPostRequest(){
+            this.Axios({
+                method:'POST',
+                url:'/api/carts/addGoods',
+                data:{
+                    name:'a',
+                    age:10
+                },
             }).then(res => {
                 console.log(res)
             }).catch(err => {
