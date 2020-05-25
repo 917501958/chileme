@@ -1,5 +1,6 @@
 /** 商品表  
  * 字段              描述          类型
+ * goodsId         商品Id         Number
  * goodname         商品名         String
  * price           商品单价        Number
  * num             商品库存数量     Number
@@ -19,6 +20,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const goods = new Schema({
+    goodsId:Number,
     goodname: String,
     price: Number,
     num: Number,

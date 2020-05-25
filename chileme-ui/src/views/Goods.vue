@@ -123,6 +123,19 @@ export default {
     },
     methods:{
         addToCarts(item){
+            this.Axios({
+                method:'POST',
+                url:'/api/carts/addGoods',
+                data:{
+                    goodsId:item.id
+                }
+            })
+            .then(res =>{
+                console.log(res)
+            })
+            .catch(function(err){
+                console.log(err)
+            })
             let flag = false //默认商品在购物车中不存在
             //遍历购物车数组
             for(let i=0;i<this.cartsList.length;i++){
@@ -138,7 +151,7 @@ export default {
         //获取商品数据
         getFoodsData(){
             this.Axios({
-                method:GET,//请求方式
+                method:'GET',//请求方式
                 url:'', //请求地址
                 data:{}, //请求携带的参数，若该请求不需要携带参数，则可以忽略该属性
             }).then(res => { //请求成功的回调函数 res请求返回的结果
@@ -150,7 +163,7 @@ export default {
         //向购物车中添加商品
         addGoods(){
             this.Axios({
-                method:GET,//请求方式
+                method:'GET',//请求方式
                 url:'', //请求地址
                 data:{}, //请求携带的参数，若该请求不需要携带参数，则可以忽略该属性
             }).then(res => { //请求成功的回调函数 res请求返回的结果
@@ -162,7 +175,7 @@ export default {
         //查询购物车中商品数据
         getCartsData(){
             this.Axios({
-                method:GET,//请求方式
+                method:'GET',//请求方式
                 url:'', //请求地址
                 data:{}, //请求携带的参数，若该请求不需要携带参数，则可以忽略该属性
             }).then(res => { //请求成功的回调函数 res请求返回的结果
@@ -174,7 +187,7 @@ export default {
         //删除购物车中商品数据
         deleGoods(){
             this.Axios({
-                method:GET,//请求方式
+                method:'GET',//请求方式
                 url:'', //请求地址
                 data:{}, //请求携带的参数，若该请求不需要携带参数，则可以忽略该属性
             }).then(res => { //请求成功的回调函数 res请求返回的结果
@@ -186,7 +199,7 @@ export default {
         //创建订单
         addOrder(){
             this.Axios({
-                method:GET,//请求方式
+                method:'GET',//请求方式
                 url:'', //请求地址
                 data:{}, //请求携带的参数，若该请求不需要携带参数，则可以忽略该属性
             }).then(res => { //请求成功的回调函数 res请求返回的结果
@@ -198,7 +211,7 @@ export default {
         //查询订单
         getOrderData(){
             this.Axios({
-                method:GET,//请求方式
+                method:'GET',//请求方式
                 url:'', //请求地址
                 data:{}, //请求携带的参数，若该请求不需要携带参数，则可以忽略该属性
             }).then(res => { //请求成功的回调函数 res请求返回的结果
@@ -210,7 +223,7 @@ export default {
         //删除订单
         deleOrder(){
             this.Axios({
-                method:GET,//请求方式
+                method:'GET',//请求方式
                 url:'', //请求地址
                 data:{}, //请求携带的参数，若该请求不需要携带参数，则可以忽略该属性
             }).then(res => { //请求成功的回调函数 res请求返回的结果

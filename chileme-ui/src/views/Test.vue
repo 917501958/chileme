@@ -66,13 +66,13 @@ export default {
             })
         },
         sendGetRequest(){
-            this.Axios({
-                method:'GET',
-                url:'/api/carts/queryCartsData',
+            this.Axios({ //访问vue组件上绑定的数据和方法用this
+                method:'GET', //请求方式 GET POST(新增) PUT DELETE
+                url:'/api/carts/queryCartsData', //请求的接口地址
                 params:{
                     name:'a',
                     age:10
-                },
+                }, //请求携带的参数
             }).then(res => {
                 console.log(res)
             }).catch(err => {
@@ -81,9 +81,9 @@ export default {
         },
         sendPostRequest(){
             this.Axios({
-                method:'POST',
+                method:'POST', //请求方式
                 url:'/api/carts/addGoods',
-                data:{
+                data:{ //携带参数
                     name:'a',
                     age:10
                 },
