@@ -127,13 +127,13 @@ export default {
                 method:'POST',
                 url:'/api/carts/addGoods',
                 data:{
-                    goodsId:item.id
+                    goodsId:1590541256382
                 }
             })
-            .then(res =>{
+            .then(res =>{ //对请求成功的结果进行处理 res成功
                 console.log(res)
             })
-            .catch(function(err){
+            .catch(function(err){ //对请求失败的结果进行处理
                 console.log(err)
             })
             let flag = false //默认商品在购物车中不存在

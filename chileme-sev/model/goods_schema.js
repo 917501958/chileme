@@ -1,6 +1,6 @@
 /** 商品表  
  * 字段              描述          类型
- * goodsId         商品Id         Number
+ * goodsId         商品id         Number
  * goodname         商品名         String
  * price           商品单价        Number
  * num             商品库存数量     Number
