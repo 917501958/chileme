@@ -28,7 +28,7 @@ const queryCartsData = async ctx => {
 const addGoods = async function(ctx){
     let req = ctx.request.body //获取参数
     console.log(req)
-    let goodsItem = null
+    let goodsItem = null // 默认没有该商品数据
     await Goods.findOne({goodsId:req.goodsId}) //去商品数据集合中查询商品数据  find返回数组,findOne返回对象
     .then(res => { //查询成功 后对查询结果res进行操作
         // console.log(res)//未查询到结果返回null
