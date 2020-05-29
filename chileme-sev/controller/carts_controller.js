@@ -4,10 +4,11 @@ const Goods = require('../model/goods_schema')
 //查询购物车数据
 const queryCartsData = async ctx => {
     //get 请求
-    let req = ctx.request.query
-    console.log(req)
+    // let req = ctx.request.query
+    // console.log(req)
     // ctx.body = '查询购物车数据成功'  //返回数据 结果
-    await Carts.find().then(data => {
+    await Carts.find().then(data => { // 等待数据库查询完成执行对应操作
+        //查询成功对应的操作
         console.log(data)
         ctx.body = {
             code:200,
@@ -16,6 +17,7 @@ const queryCartsData = async ctx => {
             list:data
         }
     }).catch(err => {
+        //查询失败对应的操作                                                                                                                                                                                                                      
         console.log(err)
         ctx.body = {
             code:200,
@@ -76,12 +78,32 @@ const addGoods = async function(ctx){
    
 }
 //从购物车中删除商品
-const deleGoods = async ctx => {
-    ctx.body = '删除商品成功'
+const deleGoods = async ctx => { 
+    let req = ctx.request.body //获取请求参数
+    console.log(req)
+    await Carts.deleteOne({ //使用对应的方法来操作对应的数据表
+        goodsId:req.goodsId
+    }).then(res => { //操作成功的处理
+        ctx.body={
+            success:true,
+            msg:'删除成功'
+        }
+    })
+    .catch(err => { //操作失败的处理
+        ctx.body={
+            success:false,
+            msg:'删除失败'
+        }
+    })
+}
+//删除购物车中所有商品
+const deleteAll = async ctx => {
+    ctx.body='操作成功'
 }
 
 module.exports = {
     queryCartsData,
     addGoods,
-    deleGoods
+    deleGoods,
+    deleteAll
 }

@@ -5,7 +5,7 @@
                 div.cortsAndOrder
                     el-tabs
                         el-tab-pane(label="点餐",name="first")
-                            Carts(:cartsList="cartsList")
+                            Carts(:cartsList="cartsList",v-on:dianji='receiveHandle') //3.将父组件定义好的函数绑定给子组件
                         el-tab-pane(label="订单",name="second")
                             Order(:ordersList="ordersList")   
             el-col(:span='16')
@@ -90,8 +90,16 @@ export default {
         this.getOrderData() // 获取订单数据
     },
     methods:{
+        // （父组件）用来接收从子组件传递过来的数据
+        //1.父组件中 定义绑定给子组件的函数，用arg作为形参来接收子组件传来的实参
+        receiveHandle(arg){
+            console.log('-----父组件------')
+            console.log(arg) //子组件传递过来的实参
+            this.deleGoods(arg)
+        },
         // 向购物车中添加商品
         addToCarts(item){
+            // this.receiveHandle('a')
             this.Axios({
                 method:'POST',
                 url:'/api/carts/addGoods',
@@ -138,19 +146,24 @@ export default {
                 url:'/api/carts/queryCartsData', //请求地址
                 // data:{}, //请求携带的参数，若该请求不需要携带参数，则可以忽略该属性
             }).then(res => { //请求成功的回调函数 res请求返回的结果
-                console.log(res)
+            console.log(res.data.list)
+            //对购物车数据进行赋值
+            this.cartsList = res.data.list
             }).catch(err => { //请求失败的回调函数 err 请求失败的返回结果
                 console.log(err)
             })
         },
         //删除购物车中商品数据
-        deleGoods(){
+        deleGoods(item){
             this.Axios({
-                method:'GET',//请求方式
-                url:'', //请求地址
-                data:{}, //请求携带的参数，若该请求不需要携带参数，则可以忽略该属性
+                method:'POST',//请求方式
+                url:'/api/carts/deleGoods', //请求地址
+                data:{
+                    goodsId:item.goodsId
+                }, //请求携带的参数，若该请求不需要携带参数，则可以忽略该属性
             }).then(res => { //请求成功的回调函数 res请求返回的结果
-                console.log(res)
+                // console.log(res)
+                this.getCartsData()
             }).catch(err => { //请求失败的回调函数 err 请求失败的返回结果
                 console.log(err)
             })
