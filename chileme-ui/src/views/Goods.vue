@@ -5,7 +5,7 @@
                 div.cortsAndOrder
                     el-tabs
                         el-tab-pane(label="点餐",name="first")
-                            Carts(:cartsList="cartsList",v-on:dianji='receiveHandle') //3.将父组件定义好的函数绑定给子组件
+                            Carts(:cartsList="cartsList",v-on:dianji='receiveHandle',v-on:shanchu='getCartsData') //3.将父组件定义好的函数绑定给子组件
                         el-tab-pane(label="订单",name="second")
                             Order(:ordersList="ordersList")   
             el-col(:span='16')

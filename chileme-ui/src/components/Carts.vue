@@ -10,11 +10,11 @@
                     el-button(type="text",size="small",@click="deleteHandle(scope.row)") 删除
         el-divider
         //- p {{`数量 ${cartsTable.length} 金额 ${total}`}}  
-        el-button(type='danger') 清空
+        el-button(type='danger',@click="deleteAllGoods") 清空
         el-button(type='success') 结算 
 </template>
 <script>
-export default {
+export default { 
     data(){
         return{
             // cartsTable:[],
@@ -28,6 +28,17 @@ export default {
             console.log(row)
             console.log('-----子组件-----')
             this.$emit('dianji',row)
+        },
+        deleteAllGoods(){
+            this.Axios({
+                method:'GET',
+                url:'/api/carts/deleteAll'
+            }).then(res => {
+                console.log(res)
+                this.$emit('shanchu')
+            }).catch(err => {
+                console.log(err)
+            })
         }
     
     },
